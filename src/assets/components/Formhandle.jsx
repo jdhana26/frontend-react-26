@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Displaydata from './displaydata';
+// import Displaydata from './displaydata';
 
 const Formhandle = () => {
     const [data, setData] = useState({
