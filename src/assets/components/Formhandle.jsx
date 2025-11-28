@@ -1,30 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 // import Displaydata from './displaydata';
 
 const Formhandle = () => {
-    const [data, setData] = useState({
-        name: "",
-        address: "",
-        mobile: "",
-        syllabus: "",
-        tech: "",
+  const [data, setData] = useState({
+    name: "",
+    address: "",
+    mobile: "",
+    syllabus: "",
+    tech: "",
+  });
 
-    });
-    const changedata = (e) => {
+  const [personal, setPersonal] = useState({
+    pname: "",
+    pemail: "",
+    pmobile: "",
+  });
+
+  const changedata = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    };
+  };
 
+  const handlePersonal = (e) => {
+    setPersonal({ ...personal, [e.target.name]: e.target.value });
+  };
 
-
-    const clicktostore = (e) => {
+  const clicktostore = (e) => {
     e.preventDefault();
 
     const formdata = JSON.stringify(data);
-    console.log("data", formdata);
+    console.log("Institute Data:", formdata);
 
     localStorage.setItem("usersdata", formdata);
 
-    alert("Successfully done");
+    alert("Institute Info Saved");
 
     setData({
       name: "",
@@ -32,20 +40,29 @@ const Formhandle = () => {
       mobile: "",
       syllabus: "",
       tech: "",
-       
     });
   };
 
+  const savePersonalData = (e) => {
+    e.preventDefault();
 
-    return (
-        <>
+    const pdata = JSON.stringify(personal);
+    console.log("Personal Data:", pdata);
 
+    localStorage.setItem("personaldata", pdata);
 
-       
+    alert("Personal Info Saved");
 
+    setPersonal({
+      pname: "",
+      pemail: "",
+      pmobile: "",
+    });
+  };
 
-
-            <div className="bg-violet-400 p-10 flex justify-center items-center">
+  return (
+    <>
+      <div className="bg-violet-400 p-10 flex justify-center items-center">
         <div className="bg-orange-500 w-[600px] p-6 rounded">
           <form className="grid grid-cols-2 items-center gap-5">
             <label>Enter the Institute Name:</label>
@@ -54,7 +71,7 @@ const Formhandle = () => {
               name="name"
               value={data.name}
               placeholder="Enter capital Letter"
-              className="bg-gray-800 text-white "
+              className="bg-gray-800 text-white"
               onChange={changedata}
             />
 
@@ -62,7 +79,7 @@ const Formhandle = () => {
             <textarea
               name="address"
               value={data.address}
-              className="bg-gray-800 text-white "
+              className="bg-gray-800 text-white"
               onChange={changedata}
             ></textarea>
 
@@ -72,10 +89,11 @@ const Formhandle = () => {
               name="mobile"
               value={data.mobile}
               placeholder="Enter 10 digit"
-              className="bg-gray-800 text-white "
+              className="bg-gray-800 text-white"
               onChange={changedata}
             />
-             <label> update Syllabus:</label>
+
+            <label>Update Syllabus:</label>
             <div className="flex gap-4">
               <label>
                 <input
@@ -99,7 +117,7 @@ const Formhandle = () => {
               </label>
             </div>
 
-            <label> IT related:</label>
+            <label>IT related:</label>
             <div className="flex gap-4">
               <label>
                 <input
@@ -121,70 +139,69 @@ const Formhandle = () => {
                 />
                 No
               </label>
-              </div>
-             
-
-
-
+            </div>
 
             <div className="col-span-2 flex justify-center">
               <button
-                className="bg-black text-white p-2 rounded-2xl "
+                className="bg-black text-white p-2 rounded-2xl"
                 onClick={clicktostore}
               >
-                See Details
+                Save Institute Details
               </button>
             </div>
           </form>
         </div>
       </div>
-<div className="bg-violet-500 mt-3 p-10">
+
+      {/* PERSONAL FORM */}
+      <div className="bg-violet-500 mt-3 p-10">
         <h1 className="text-center font-bold">Personal Details</h1>
 
         <div className="bg-gray-200 p-6 rounded w-[500px] mx-auto flex flex-col justify-center items-center gap-3">
           <form className="grid grid-cols-2 gap-4 items-center">
-            <label>Enter Your name:</label>
+            <label>Enter Your Name:</label>
             <input
               type="text"
+              name="pname"
+              value={personal.pname}
               placeholder="Enter Capital Letter"
-              className="bg-white  "
+              className="bg-white"
+              onChange={handlePersonal}
             />
 
             <label>Enter Email id:</label>
             <input
               type="email"
+              name="pemail"
+              value={personal.pemail}
               placeholder="Enter valid email"
-              className="bg-white  "
+              className="bg-white"
+              onChange={handlePersonal}
             />
 
             <label>Enter Mobile no:</label>
             <input
               type="number"
+              name="pmobile"
+              value={personal.pmobile}
               placeholder="Enter valid mobile no"
-              className="bg-white  "
+              className="bg-white"
+              onChange={handlePersonal}
             />
 
             <div className="col-span-2 flex justify-center">
-              <button className="bg-black text-white p-2 rounded-2xl ">
-                Login
+              <button
+                className="bg-black text-white p-2 rounded-2xl"
+                onClick={savePersonalData}
+              >
+                Save Personal Details
               </button>
             </div>
           </form>
-
-          
+        </div>
       </div>
-      </div>
-      <section>
+    </>
+  );
+};
 
-
-        {/* <Displaydata/> */}
-      </section>
-
-
-
-
-        </>
-    )
-}
-
-export default Formhandle
+export default Formhandle;
