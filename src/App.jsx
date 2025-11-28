@@ -1,8 +1,8 @@
  import React from 'react'
  import Navbar from './assets/components/Navbar'
  import { Route, Routes } from "react-router-dom"
-import Formhandle from './assets/components/Formhandle'
-import Displaydata from './assets/components/displaydata'
+// import Formhandle from './assets/components/Formhandle'
+// import Displaydata from './assets/components/displaydata'
 import Register from './assets/components/Register'
 import Login from './assets/components/Login'
 import Dashboard from './assets/components/Dashb'
