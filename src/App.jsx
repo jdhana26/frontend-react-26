@@ -1,36 +1,29 @@
- import React from 'react'
- import Navbar from './assets/components/Navbar'
- import { Route, Routes } from "react-router-dom"
-// import Formhandle from './assets/components/Formhandle'
-// import Displaydata from './assets/components/displaydata'
+import React from 'react'
+import Navbar from './assets/components/Navbar'
+import { Route, Routes } from "react-router-dom"
 import Register from './assets/components/Register'
 import Login from './assets/components/Login'
 import Dashboard from './assets/components/Dashb'
 
- 
- 
- const App = () => {
-   return (
+const App = () => {
+  return (
     <>
-     <div>
-    <Navbar />
-     </div>
-     <main>
-        <div>
-          <Routes>
-            <Route path="/home" element={<Formhandle />} />
-            <Route path="/Displaydata" element={<Displaydata />} />
-            <Route path="/" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dash" element={<Dashboard/>} />
+      <Navbar />
 
-
-          </Routes>
-        </div>
+      <main>
+        <Routes>
+          {/* Registration */}
+          <Route path="/" element={<Register />} />
+          
+          {/* Login */}
+          <Route path="/login" element={<Login />} />
+          
+          {/* Dashboard */}
+          <Route path="/dash" element={<Dashboard />} />
+        </Routes>
       </main>
- </>
-   )
- }
- 
- export default App
- 
+    </>
+  )
+}
+
+export default App
